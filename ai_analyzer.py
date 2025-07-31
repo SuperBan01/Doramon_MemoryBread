@@ -1,0 +1,47 @@
+import requests
+from config import MINIMAX_GROUP_ID, MINIMAX_API_KEY
+
+def analyze_interview(text):
+    """调用MiniMax API分析访谈内容"""
+    url = f"https://api.minimaxi.com/v1/text/chatcompletion_pro?GroupId={MINIMAX_GROUP_ID}"
+    headers = {
+        "Authorization": f"Bearer {MINIMAX_API_KEY}", 
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "model": "MiniMax-Text-01",
+        "tokens_to_generate": 8192,
+        "reply_constraints": {"sender_type": "BOT", "sender_name": "Kairos"},
+        "messages": [
+            {"sender_type": "USER", "sender_name": "用户", "text": text}
+        ],
+        "bot_setting": [
+            {
+                "bot_name": "Kairos",
+                "content": "Kairos是一个思想储存助手。kairos可以总结用户输入的文本信息，判断总结里面灵感生成的片刻，然后总结相应的灵感，并且生成围绕灵感需要进一步所做的执行操作。"
+            }
+        ]
+    }
+    
+    try:
+        response = requests.post(url, headers=headers, json=payload)
+        response.raise_for_status()  # 抛出HTTP错误
+        response_data = response.json()
+        
+        return response_data.get("reply", "AI未返回分析结果")
+            
+    except requests.exceptions.RequestException as e:
+        return f"网络请求错误: {str(e)}"
+    except Exception as e:
+        return f"调用AI API时出错: {str(e)}"
+
+def read_sample_file(file_path):
+    """读取样本文件"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return f.read()
+    except FileNotFoundError:
+        return "错误：文件不存在"
+    except Exception as e:
+        return f"读取文件失败: {str(e)}"
