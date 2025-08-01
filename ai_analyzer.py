@@ -32,6 +32,7 @@ def analyze_interview(text):
         response.raise_for_status()  # 抛出HTTP错误
         response_data = response.json() #将响应内容转换为json格式
         
+        print(response_data)
         return response_data.get("reply", "AI未返回分析结果") #安全地获取字典中的"reply"键值
             
     except requests.exceptions.RequestException as e:

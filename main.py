@@ -1,42 +1,39 @@
 from ai_analyzer import analyze_interview, read_sample_file
 from feishu_writer import write_analysis_to_feishu
+from voice2txt import get_audio_text
+from config import XFYUN_APPID, XFYUN_SECRET_KEY
 import os
 
 def main():
-    """主程序流程"""
-    print("🥖 Doramon记忆面包处理开始...")
+    """主流程：音频->文本->AI分析->飞书"""
+    print("🥖 Doramon记忆面包开始处理...")
     
-    # 1. 读取访谈文件 - 修改这里
-    # 获取当前脚本所在目录
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    sample_path = os.path.join(current_dir, "sample", "sample1")
-    print(f"📖 正在读取文件: {sample_path}")
+    # 1. 批量获取所有声音文件，处理为文本，放置在文本文件夹下
+    # 未来可能是我们指定文件地址，或者每检测到有一个新的文件则进行处理
+    text = get_audio_text(XFYUN_APPID, XFYUN_SECRET_KEY)
     
-    interview_text = read_sample_file(sample_path)
-    if interview_text.startswith("错误") or interview_text.startswith("读取文件失败"):
-        print(f"❌ {interview_text}")
+    if not text:
+        print("📖 读取文本文件...")
+        text = read_sample_file(os.path.join("sample", "sample1"))
+    
+    if not text or text.startswith(("错误", "读取文件失败")):
+        print("❌ 获取文本失败")
         return
-    
-    print(f"✅ 文件读取成功，内容长度: {len(interview_text)} 字符")
     
     # 2. AI分析
-    print("🤖 正在调用AI进行分析...")
-    analysis_result = analyze_interview(interview_text)
+    print("🤖 AI分析中...")
+    analysis = analyze_interview(text)
     
-    if analysis_result.startswith(("网络请求错误", "调用AI API时出错", "AI未返回")):
-        print(f"❌ AI分析失败: {analysis_result}")
+    if analysis.startswith(("网络请求错误", "调用AI API时出错", "AI未返回")):
+        print(f"❌ AI分析失败: {analysis}")
         return
     
-    print("✅ AI分析完成")
-    print(f"📋 完整分析结果:\n{analysis_result}")
-       
     # 3. 写入飞书
-    print("📝 正在写入飞书文档...")
-    success, message = write_analysis_to_feishu(analysis_result)
+    print("📝 写入飞书...")
+    success, message = write_analysis_to_feishu(analysis)
     
     if success:
-        print(f"✅ {message}")
-        print("🎉 记忆面包处理完成！经验包已成功消化并存储到飞书文档中")
+        print("✅ 处理完成！")
     else:
         print(f"❌ {message}")
 
