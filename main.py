@@ -1,15 +1,14 @@
 from ai_analyzer import analyze_interview, read_sample_file
-from feishu_writer import write_analysis_to_feishu
+from feishu_writer import write_analysis_to_feishu_smart
 from voice2txt import get_audio_text
 from config import XFYUN_APPID, XFYUN_SECRET_KEY
 import os
 
 def main():
-    """主流程：音频->文本->AI分析->飞书"""
+    """主函数：完整的音频处理流程"""
     print("🥖 Doramon记忆面包开始处理...")
     
-    # 1. 批量获取所有声音文件，处理为文本，放置在文本文件夹下
-    # 未来可能是我们指定文件地址，或者每检测到有一个新的文件则进行处理
+    # 1. 获取文本
     text = get_audio_text(XFYUN_APPID, XFYUN_SECRET_KEY)
     
     if not text:
@@ -30,10 +29,10 @@ def main():
     
     # 3. 写入飞书
     print("📝 写入飞书...")
-    success, message = write_analysis_to_feishu(analysis)
+    success, message = write_analysis_to_feishu_smart(analysis)
     
     if success:
-        print("✅ 处理完成！")
+        print(f"✅ {message}")
     else:
         print(f"❌ {message}")
 

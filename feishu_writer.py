@@ -1,10 +1,68 @@
 import lark_oapi as lark
 from lark_oapi.api.docx.v1 import *
 from datetime import datetime
-from config import FEISHU_USER_TOKEN, FEISHU_DOCUMENT_ID, BLOCK_DOCUMENT_ID
+from config import FEISHU_USER_TOKEN, FEISHU_DOCUMENT_ID, BLOCK_DOCUMENT_ID, FEISHU_APP_ID, FEISHU_APP_SECRET
+from format_generator import generate_feishu_format
 
+def convert_to_lark_blocks(format_json):
+    """将生成的JSON格式转换为lark SDK格式"""
+    blocks = []
+    
+    for item in format_json.get('children', []):
+        block_type = item.get('block_type', 'paragraph')
+        
+        if block_type == 'paragraph':
+            content = item['paragraph']['elements'][0]['text_run']['content']
+            block = Block.builder() \
+                .block_type(2) \
+                .text(Text.builder()
+                    .elements([TextElement.builder()
+                        .text_run(TextRun.builder()
+                            .content(content)
+                            .build())
+                        .build()])
+                    .build()) \
+                .build()
+            blocks.append(block)
+        print("blocks:", blocks) # 调试用，查看有没有成功转换为对应的response里的block飞书格式
+    
+    return blocks
+
+def write_analysis_to_feishu_smart(analysis_result):
+    """智能写入分析结果到飞书文档"""
+    try:
+        client = lark.Client.builder().app_id(FEISHU_APP_ID).app_secret(FEISHU_APP_SECRET).build()
+        
+        # 生成格式
+        format_json = generate_feishu_format(analysis_result)
+        blocks = convert_to_lark_blocks(format_json)
+        
+        # 构建请求，.children(blocks) 中的 blocks 变量为大模型生成的“根据内容自动选择合适的飞书文档格式和结构”
+        request = CreateDocumentBlockChildrenRequest.builder() \
+            .document_id(FEISHU_DOCUMENT_ID) \
+            .block_id(BLOCK_DOCUMENT_ID) \
+            .document_revision_id(-1) \
+            .user_id_type("user_id") \
+            .request_body(CreateDocumentBlockChildrenRequestBody.builder()
+                .children(blocks)
+                .index(0)
+                .build()) \
+            .build()
+        
+        option = lark.RequestOption.builder().user_access_token(FEISHU_USER_TOKEN).build()
+        response = client.docx.v1.document_block_children.create(request, option)
+        
+        if response.success():
+            return True, "智能格式内容已成功写入飞书文档"
+        else:
+            return False, f"写入失败: {response.msg}"
+            
+    except Exception as e:
+        return False, f"飞书API调用出错: {str(e)}"
+
+# 保留原有函数
 def write_analysis_to_feishu(analysis_result):
-    """将分析结果写入飞书文档"""
+    """原有的简单写入方法，以传统固定方式写入"""
     try:
         client = lark.Client.builder() \
             .enable_set_token(True) \

@@ -24,6 +24,6 @@ python main.py 即可
 git上传指令：
 ```bash
 1. git add .
-2. git commit -m "test"
+2. git commit -m "Releases2"
 3. git push -u origin main
 ```
