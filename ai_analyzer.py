@@ -1,5 +1,7 @@
 import requests
 from config import MINIMAX_GROUP_ID, MINIMAX_API_KEY
+from voice2txt import get_audio_text_path
+from config import XFYUN_APPID, XFYUN_SECRET_KEY
 
 def analyze_interview(text):
     """调用MiniMax API分析访谈内容"""
@@ -40,7 +42,7 @@ def analyze_interview(text):
     except Exception as e:
         return f"调用AI API时出错: {str(e)}"
 
-def read_sample_file(file_path):
+def read_sample_file(file_path):  # 实际上没用到，因为直接传的文件内容test
     """读取样本文件"""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -48,4 +50,8 @@ def read_sample_file(file_path):
     except FileNotFoundError:
         return "错误：文件不存在"
     except Exception as e:
-        return f"读取文件失败: {str(e)}"
+        return f"读取文件失败: {str(e)}"  
+    
+if __name__ == '__main__':
+    text,output_path = get_audio_text_path(XFYUN_APPID, XFYUN_SECRET_KEY) # 实现音频转文本并保存到对应文件夹
+    analysis = analyze_interview(text) # 调用minimax api让ai对原文本进行总结，处理的结果存储到analysis变量
