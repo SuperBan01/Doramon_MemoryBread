@@ -1,0 +1,925 @@
+{
+  "first_level_block_ids": [
+    "a9cec2a8-6475-47f8-8940-6e818e446f8d",
+    "bdf24329-5d94-466c-b1ce-6dcd2d6792b2",
+    "579dcac7-5aef-4af3-a13c-627ff0c5d443",
+    "e0cc5a85-2242-4c27-b7aa-fca87b854100",
+    "846df95c-1dee-4898-9952-cd32aea6db33",
+    "f7bdc0cb-a884-45a6-a838-c182dbf8b4d1",
+    "63a712ad-2ed0-462b-9faa-ce6efa6ba32b",
+    "128c896d-5db8-4b1f-9bd7-55bfab25b998",
+    "3cf46934-6701-468d-a864-30c2f2657e98",
+    "5da56958-6379-43f5-ab0e-3de8aa6b87d8",
+    "b66999c1-922b-4572-ab78-a2420b447bdf",
+    "851dab4b-27c0-46e6-b545-12c2851c2033",
+    "dc265d92-4c54-416a-b22c-f4cb5b6dfabe",
+    "3c27f795-1d86-4ecf-9ef4-b70a6ce41c86",
+    "cb0d6205-fc67-4b34-983c-c884796296eb",
+    "3a299919-0e7f-4865-b247-431c04cc2120",
+    "e1fe9f81-f0e1-4558-b5ee-7cf6383b50f2",
+    "b3aa4eaf-fb07-4353-975f-d81e41151dfd"
+  ],
+  "blocks": [
+    {
+      "block_id": "3a299919-0e7f-4865-b247-431c04cc2120",
+      "parent_id": "",
+      "block_type": 2,
+      "text": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "通过以上执行操作，可以进一步巩固经济复苏成果，推动中国经济实现更高质量、更有效率、更加公平、更可持续的发展。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "3c595cf7-839b-43fe-b529-a741d6906f8e",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "制定和实施促进高质量发展的具体措施，如推动科技创新、绿色发展和产业升级。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "3cf46934-6701-468d-a864-30c2f2657e98",
+      "parent_id": "",
+      "children": [
+        "790be590-df89-4722-942a-a5c328847b81",
+        "8ed1fee0-9584-44b8-b66f-e91240a5b036"
+      ],
+      "block_type": 13,
+      "ordered": {
+        "style": {
+          "align": 1,
+          "folded": false,
+          "sequence": "auto"
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "疫情控制与经济韧性",
+              "text_element_style": {
+                "bold": true,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          },
+          {
+            "text_run": {
+              "content": "：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "e0cc5a85-2242-4c27-b7aa-fca87b854100",
+      "parent_id": "",
+      "block_type": 5,
+      "heading3": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "总结与灵感生成",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b66999c1-922b-4572-ab78-a2420b447bdf",
+      "parent_id": "",
+      "block_type": 6,
+      "heading4": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "执行操作：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "a9cec2a8-6475-47f8-8940-6e818e446f8d",
+      "parent_id": "",
+      "block_type": 3,
+      "heading1": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "AI分析报告",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "579dcac7-5aef-4af3-a13c-627ff0c5d443",
+      "parent_id": "",
+      "block_type": 4,
+      "heading2": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "分析内容",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "9a0c679e-7080-444a-8495-5ebe20fdb3e9",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "社会大局的稳定为经济长期发展提供了良好的环境。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "7c9b87bb-f6d2-4b82-83cd-b54ac31857c4",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "研究疫情管理与经济发展之间的协调机制，制定更加灵活和有效的应对策略。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "f7bdc0cb-a884-45a6-a838-c182dbf8b4d1",
+      "parent_id": "",
+      "block_type": 2,
+      "text": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "国家统计局公布的数据显示，尽管面临复杂严峻的国际环境和国内疫情多发散发等不利因素影响，中国经济在二季度顶住了压力，实现了正增长。上半年国内生产总值达到562,642亿元，同比增长2.5%。在党中央的坚强领导下，各地区各部门积极落实稳经济一揽子政策措施，有效控制了疫情反弹，推动国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力，高质量发展态势持续，社会大局保持稳定。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "e1fe9f81-f0e1-4558-b5ee-7cf6383b50f2",
+      "parent_id": "",
+      "block_type": 22,
+      "divider": {}
+    },
+    {
+      "block_id": "3c27f795-1d86-4ecf-9ef4-b70a6ce41c86",
+      "parent_id": "",
+      "children": [
+        "3c595cf7-839b-43fe-b529-a741d6906f8e",
+        "e6447d4b-05eb-45bd-9542-cb93fa6c0f27"
+      ],
+      "block_type": 13,
+      "ordered": {
+        "style": {
+          "align": 1,
+          "folded": false,
+          "sequence": "auto"
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "高质量发展推进",
+              "text_element_style": {
+                "bold": true,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          },
+          {
+            "text_run": {
+              "content": "：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "b3aa4eaf-fb07-4353-975f-d81e41151dfd",
+      "parent_id": "",
+      "block_type": 2,
+      "text": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "由Doramon记忆面包系统自动生成",
+              "text_element_style": {
+                "bold": false,
+                "italic": true,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "cb0d6205-fc67-4b34-983c-c884796296eb",
+      "parent_id": "",
+      "children": [
+        "86720730-f605-4a06-877b-c83ac9eea8ef",
+        "e1467287-e2d2-407e-ac99-4b2a8c1c4154"
+      ],
+      "block_type": 13,
+      "ordered": {
+        "style": {
+          "align": 1,
+          "folded": false,
+          "sequence": "auto"
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "社会与经济协同发展",
+              "text_element_style": {
+                "bold": true,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          },
+          {
+            "text_run": {
+              "content": "：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "63a712ad-2ed0-462b-9faa-ce6efa6ba32b",
+      "parent_id": "",
+      "block_type": 6,
+      "heading4": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "灵感生成：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "25d01789-a126-4aad-8d6b-222be48065a5",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "深入分析已实施的稳经济一揽子政策措施的效果，评估其对不同行业和地区的影响。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "dba9efee-8bd1-43b0-b50d-3f20a83b02b6",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "稳经济一揽子政策措施的推出和落实，展示了政策制定和执行的效率和精准度。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "dc265d92-4c54-416a-b22c-f4cb5b6dfabe",
+      "parent_id": "",
+      "children": [
+        "f599ae9e-122b-418b-89e6-1667d68ba931",
+        "7c9b87bb-f6d2-4b82-83cd-b54ac31857c4"
+      ],
+      "block_type": 13,
+      "ordered": {
+        "style": {
+          "align": 1,
+          "folded": false,
+          "sequence": "auto"
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "疫情管理与经济协调",
+              "text_element_style": {
+                "bold": true,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          },
+          {
+            "text_run": {
+              "content": "：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "e6447d4b-05eb-45bd-9542-cb93fa6c0f27",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "加强国际合作，吸引外资，提升中国经济的国际竞争力。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "86720730-f605-4a06-877b-c83ac9eea8ef",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "关注民生保障，确保政策措施惠及广大人民群众。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "bdf24329-5d94-466c-b1ce-6dcd2d6792b2",
+      "parent_id": "",
+      "block_type": 15,
+      "quote": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "生成时间: 2025-08-03 14:49:51",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "128c896d-5db8-4b1f-9bd7-55bfab25b998",
+      "parent_id": "",
+      "children": [
+        "68f175b2-59db-4048-85aa-a81ceb9a0505",
+        "dba9efee-8bd1-43b0-b50d-3f20a83b02b6"
+      ],
+      "block_type": 13,
+      "ordered": {
+        "style": {
+          "align": 1,
+          "folded": false,
+          "sequence": "1"
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "政策效应与经济复苏",
+              "text_element_style": {
+                "bold": true,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          },
+          {
+            "text_run": {
+              "content": "：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "8ed1fee0-9584-44b8-b66f-e91240a5b036",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "中国经济的韧性在面对突发因素冲击时得到了充分体现。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "f599ae9e-122b-418b-89e6-1667d68ba931",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "继续加强疫情监测和管理，确保疫情反弹得到有效控制。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "5da56958-6379-43f5-ab0e-3de8aa6b87d8",
+      "parent_id": "",
+      "children": [
+        "ce8906b7-f82f-4254-b48d-0f32e1cf2f56",
+        "9a0c679e-7080-444a-8495-5ebe20fdb3e9"
+      ],
+      "block_type": 13,
+      "ordered": {
+        "style": {
+          "align": 1,
+          "folded": false,
+          "sequence": "auto"
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "高质量发展与长期稳定",
+              "text_element_style": {
+                "bold": true,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          },
+          {
+            "text_run": {
+              "content": "：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "846df95c-1dee-4898-9952-cd32aea6db33",
+      "parent_id": "",
+      "block_type": 6,
+      "heading4": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "总结：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "e82f6c53-28d5-4d46-bc32-da60f6b85fe9",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "根据分析结果，优化政策措施，确保其持续有效性和适应性。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "851dab4b-27c0-46e6-b545-12c2851c2033",
+      "parent_id": "",
+      "children": [
+        "25d01789-a126-4aad-8d6b-222be48065a5",
+        "e82f6c53-28d5-4d46-bc32-da60f6b85fe9"
+      ],
+      "block_type": 13,
+      "ordered": {
+        "style": {
+          "align": 1,
+          "folded": false,
+          "sequence": "1"
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "政策分析与优化",
+              "text_element_style": {
+                "bold": true,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          },
+          {
+            "text_run": {
+              "content": "：",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "e1467287-e2d2-407e-ac99-4b2a8c1c4154",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "促进就业和收入增长，提升社会整体消费能力，为经济复苏提供持续动力。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "68f175b2-59db-4048-85aa-a81ceb9a0505",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "政策快速响应和有效实施是经济企稳回升的关键因素。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "ce8906b7-f82f-4254-b48d-0f32e1cf2f56",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "高质量发展态势的持续，表明中国经济正在向更加可持续和稳健的方向发展。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "790be590-df89-4722-942a-a5c328847b81",
+      "parent_id": "",
+      "block_type": 12,
+      "bullet": {
+        "style": {
+          "align": 1,
+          "folded": false
+        },
+        "elements": [
+          {
+            "text_run": {
+              "content": "疫情反弹的有效控制为经济复苏提供了基础保障。",
+              "text_element_style": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "inline_code": false
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "block_id_to_image_urls": []
+}
