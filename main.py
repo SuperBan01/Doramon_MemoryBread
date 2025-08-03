@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+import sys
+import io
 from ai_analyzer import analyze_interview, read_sample_file
 from voice2txt import get_audio_text_path
 from format_generator import generate_and_save_markdown
@@ -33,8 +36,9 @@ def main():
     # file_name = "analyzed_test_transcription.md"
     file_path = path
     file_name = os.path.basename(file_path)
+    # file_name = f"记忆面包_{os.path.splitext(os.path.basename(file_path))[0]}"
     
-    user_access_token = "u-f8pkdG9dReHUjkPmTmapqf450AERk1wVhq00k5g00HuF"
+    user_access_token = "u-fujv_Ndi53SXpDn1EonBoW1g0.CRk1aVW800k0A02xuk"
     mount_key = "Z4ZrfFYRRlxV3Ldn1guc6xacn4c"  # 目标文件夹的key
     
     # 创建client
