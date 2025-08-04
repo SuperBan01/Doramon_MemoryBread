@@ -35,6 +35,44 @@ def call_spark_api(prompt):
 def generate_markdown_content(text_content):
     """生成纯markdown内容"""
     prompt = f"""
+你是一名专业的 **Markdown 格式化助手**，请仅对输入文本做轻量的格式检查和修正，保证 Markdown 结构稳定。
+
+---
+
+### 输出目标
+1. 输出必须是 **纯 Markdown 文本**，适合直接保存为 .md 文件。
+2. **不要改写、删除或新增任何信息或语气**，尤其是攻击性或戏剧化的表达。
+3. 仅做必要的格式优化（如标题、列表、段落换行）。
+4. 严禁输出解释性文字、JSON、代码块标记或其他多余符号。
+
+---
+
+### 格式化原则
+1. 保持原有 Markdown 标题层级不变（`#`、`##`、`###`）。
+2. 段落换行合理，每个自然段独立成段。
+3. 列表统一用 `-`（无序）或 `1.`（有序）格式。
+4. 不要添加表格或引用符号 `>`，避免 Markdown 解析冲突。
+5. 如果输入文本为空，直接输出空内容。
+
+---
+
+### 输入文本：
+{text_content}
+
+---
+"""
+    
+    try:
+        response = call_spark_api(prompt)
+        if response and 'choices' in response:
+            return response['choices'][0]['message']['content'].strip()
+        return get_default_markdown(text_content)
+    except Exception as e:
+        print(f"Markdown生成错误: {e}")
+        return get_default_markdown(text_content)
+
+"""
+        原提示词：
         你是一名专业的**信息架构设计师和写作专家**，请根据以下输入文本，**自主分析内容并重构为优质的 Markdown 文档**。
 
         ---
@@ -90,15 +128,6 @@ def generate_markdown_content(text_content):
         ---
 
         """
-    
-    try:
-        response = call_spark_api(prompt)
-        if response and 'choices' in response:
-            return response['choices'][0]['message']['content'].strip()
-        return get_default_markdown(text_content)
-    except Exception as e:
-        print(f"Markdown生成错误: {e}")
-        return get_default_markdown(text_content)
 
 def get_default_markdown(text_content):
     """获取默认markdown格式（备用方案）"""

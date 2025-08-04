@@ -45,7 +45,7 @@ class VoiceRecognizer:
             
         params = {
             'appId': self.appid, 'signa': sign, 'ts': ts,
-            'fileSize': len(data), 'fileName': os.path.basename(audio_path), 'duration': '200'
+            'fileSize': len(data), 'fileName': os.path.basename(audio_path), 'duration': '500'
         }
             
         print(f"上传参数: {params}")

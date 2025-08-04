@@ -14,8 +14,15 @@ def main():
     print("🥖 Doramon记忆面包开始处理...")
     
     # 1. 获取文本
-    text,output_path = get_audio_text_path(XFYUN_APPID, XFYUN_SECRET_KEY) # 实现音频转文本并保存到对应文件夹
+    # text,output_path = get_audio_text_path(XFYUN_APPID, XFYUN_SECRET_KEY) # 实现音频转文本并保存到对应文件夹
 
+    # 直接从文本sample文件夹路径下读取文本
+    sample_folder = "sample"
+    file_name = "项目路演测试文本.txt"
+    file_path = os.path.join(sample_folder, file_name)
+    with open(file_path, 'r', encoding='utf-8') as file:
+        text = file.read()
+    
     # 2. AI分析
     print("🤖 AI分析文本中...")
     analysis = analyze_interview(text) # 调用minimax api让ai对原文本进行总结，处理的结果存储到analysis变量
@@ -35,10 +42,10 @@ def main():
     # file_path = r"C:\Users\95718\Desktop\vscode\Program\memory_bread\Doramon_MemoryBread\sample_md\analyzed_test_transcription.md"
     # file_name = "analyzed_test_transcription.md"
     file_path = path
-    file_name = os.path.basename(file_path)
+    file_name = os.path.basename(file_path) # 未来会考虑使用AI分析的内容总结生成标题
     # file_name = f"记忆面包_{os.path.splitext(os.path.basename(file_path))[0]}"
     
-    user_access_token = "u-fujv_Ndi53SXpDn1EonBoW1g0.CRk1aVW800k0A02xuk"
+    user_access_token = "u-fE2zVji5F8Y8TEaSD6d2R.007gWw11aVNW20lgiEw4_T"
     mount_key = "Z4ZrfFYRRlxV3Ldn1guc6xacn4c"  # 目标文件夹的key
     
     # 创建client
