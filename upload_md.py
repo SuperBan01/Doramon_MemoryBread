@@ -7,13 +7,13 @@ from lark_oapi.api.drive.v1 import *
 
 # SDK 使用说明: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/server-side-sdk/python--sdk/preparations-before-development
 # 以下示例代码默认根据文档示例值填充，如果存在代码问题，请在 API 调试台填上相关必要参数后再复制代码使用
-def upload_file(client, file_path, file_name, user_access_token):
+def upload_file(client, file_path, user_access_token):
     """上传文件到飞书云文档"""
     file = open(file_path, "rb")
     file_size = os.path.getsize(file_path)
     request: UploadAllMediaRequest = UploadAllMediaRequest.builder() \
         .request_body(UploadAllMediaRequestBody.builder()
-            .file_name(file_name)
+            .file_name(file_path)
             .parent_type("ccm_import_open")
             .size(str(file_size))
             .extra("{\"obj_type\": \"docx\",\"file_extension\": \"md\"}")
@@ -71,9 +71,8 @@ def create_import_task(client, file_token, mount_key, user_access_token):
 
 def main():
     # 配置参数
-    file_path = r"C:\Users\95718\Desktop\vscode\Program\memory_bread\Doramon_MemoryBread\sample_md\analyzed_test_transcription.md"
-    file_name = "analyzed_test_transcription.md"
-    user_access_token = "u-dYytJ2gqp4q8sjadHza3PT5k7HJBk1ahOG00llOw0BFK"
+    file_path = "meeting_sum.md"
+    user_access_token = "u-elZfENgbpfdpYlHuTc76zagl49HBk1EPj0G01gcw2Eag"
     mount_key = "Z4ZrfFYRRlxV3Ldn1guc6xacn4c"  # 目标文件夹的key
     
     # 创建client
@@ -85,7 +84,7 @@ def main():
 
     # 第一步：上传文件
     print("开始上传文件...")
-    file_token = upload_file(client, file_path, file_name, user_access_token)
+    file_token = upload_file(client, file_path, user_access_token)
     
     if file_token is None:
         print("文件上传失败，终止流程")

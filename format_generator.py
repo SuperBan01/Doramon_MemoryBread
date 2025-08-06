@@ -4,29 +4,52 @@ from config import XUNFEI_API_KEY
 from datetime import datetime
 import os
 import glob
-from ai_analyzer import analyze_interview
+
 def call_spark_api(prompt):
     """调用讯飞Spark 4.0 Ultra API"""
-    url = "https://spark-api-open.xf-yun.com/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {XUNFEI_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    data = {
-        "model": "4.0Ultra",
-        "messages": [{"role": "user", "content": prompt}],
-        "stream": False,
-        "max_tokens": 2048,
-        "temperature": 0.3
-    }
-    
     try:
+        # API配置
+        url = "https://spark-api-open.xf-yun.com/v1/chat/completions"
+        
+        # 构建请求头
+        headers = {
+            "Authorization": f"Bearer {XUNFEI_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        
+        # 构建请求体
+        data = {
+            "model": "4.0Ultra",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            "stream": False,
+            "max_tokens": 2048,
+            "temperature": 0.3
+        }
+        
+        # 发送请求
         response = requests.post(url, headers=headers, json=data, timeout=30)
         if response.status_code == 200:
             result = response.json()
-            if 'choices' in result and result['choices']:
+            # 添加更详细的响应验证
+            if 'choices' in result and len(result['choices']) > 0:
                 return result
-        print(f"API调用失败: {response.status_code}")
+            else:
+                print(f"API响应格式异常: {result}")
+                return None
+        else:
+            print(f"API调用失败: {response.status_code}, {response.text}")
+            return None
+            
+    except requests.exceptions.Timeout:
+        print("API调用超时")
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"网络请求异常: {e}")
         return None
     except Exception as e:
         print(f"API调用异常: {e}")
@@ -34,45 +57,9 @@ def call_spark_api(prompt):
 
 def generate_markdown_content(text_content):
     """生成纯markdown内容"""
-    prompt = f"""
-你是一名专业的 **Markdown 格式化助手**，请仅对输入文本做轻量的格式检查和修正，保证 Markdown 结构稳定。
-
----
-
-### 输出目标
-1. 输出必须是 **纯 Markdown 文本**，适合直接保存为 .md 文件。
-2. **不要改写、删除或新增任何信息或语气**，尤其是攻击性或戏剧化的表达。
-3. 仅做必要的格式优化（如标题、列表、段落换行）。
-4. 严禁输出解释性文字、JSON、代码块标记或其他多余符号。
-
----
-
-### 格式化原则
-1. 保持原有 Markdown 标题层级不变（`#`、`##`、`###`）。
-2. 段落换行合理，每个自然段独立成段。
-3. 列表统一用 `-`（无序）或 `1.`（有序）格式。
-4. 不要添加表格或引用符号 `>`，避免 Markdown 解析冲突。
-5. 如果输入文本为空，直接输出空内容。
-
----
-
-### 输入文本：
-{text_content}
-
----
-"""
-    
     try:
-        response = call_spark_api(prompt)
-        if response and 'choices' in response:
-            return response['choices'][0]['message']['content'].strip()
-        return get_default_markdown(text_content)
-    except Exception as e:
-        print(f"Markdown生成错误: {e}")
-        return get_default_markdown(text_content)
-
-"""
-        原提示词：
+        # 构建专业的提示词
+        prompt = f"""
         你是一名专业的**信息架构设计师和写作专家**，请根据以下输入文本，**自主分析内容并重构为优质的 Markdown 文档**。
 
         ---
@@ -128,11 +115,26 @@ def generate_markdown_content(text_content):
         ---
 
         """
+                
+        # 调用Spark 4.0 Ultra API获取markdown内容
+        response = call_spark_api(prompt)
+        
+        if response and 'choices' in response:
+            markdown_content = response['choices'][0]['message']['content']
+            return markdown_content.strip()
+        
+        # 如果API调用失败，返回默认markdown格式
+        return get_default_markdown(text_content)
+        
+    except Exception as e:
+        print(f"Markdown生成错误: {e}")
+        return get_default_markdown(text_content)
 
 def get_default_markdown(text_content):
     """获取默认markdown格式（备用方案）"""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    return f"""# AI分析报告
+    
+    markdown_content = f"""# AI分析报告
 
 > 生成时间: {timestamp}
 
@@ -144,48 +146,72 @@ def get_default_markdown(text_content):
 
 *由Doramon记忆面包系统自动生成*
 """
+    
+    return markdown_content
 
 def save_markdown_to_file(markdown_content, filename=None):
     """将markdown内容保存到sample_md文件夹"""
     try:
-        os.makedirs("sample_md", exist_ok=True)
+        # 确保sample_md文件夹存在
+        sample_md_dir = "sample_md"
+        if not os.path.exists(sample_md_dir):
+            os.makedirs(sample_md_dir)
         
-        if not filename:
+        # 生成文件名
+        if filename is None:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"analysis_{timestamp}.md"
         
+        # 确保文件名以.md结尾
         if not filename.endswith('.md'):
             filename += '.md'
         
-        file_path = os.path.join("sample_md", filename)
+        # 完整文件路径
+        file_path = os.path.join(sample_md_dir, filename)
         
+        # 写入文件
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(markdown_content)
         
-        return True, file_path  # 直接返回文件路径而不是消息
+        return True, f"Markdown文件已保存到: {file_path}"
+        
     except Exception as e:
         return False, f"保存Markdown文件失败: {str(e)}"
 
 def generate_and_save_markdown(text_content, filename=None):
     """生成markdown内容并保存到文件"""
     try:
+        # 生成markdown内容
         markdown_content = generate_markdown_content(text_content)
-        success, path = save_markdown_to_file(markdown_content, filename)
-        return success, markdown_content, path  # 返回路径而不是消息
+        
+        # 保存到文件
+        success, message = save_markdown_to_file(markdown_content, filename)
+        
+        if success:
+            return True, markdown_content, message
+        else:
+            return False, markdown_content, message
+            
     except Exception as e:
         return False, "", f"生成和保存Markdown失败: {str(e)}"
 
 def get_latest_sample_file():
     """获取sample文件夹中最新的文件"""
     try:
-        if not os.path.exists("sample"):
+        sample_dir = "sample"
+        if not os.path.exists(sample_dir):
             return None, "sample文件夹不存在"
         
-        files = glob.glob(os.path.join("sample", "*"))
+        # 获取sample文件夹中的所有文件
+        files = glob.glob(os.path.join(sample_dir, "*"))
         if not files:
             return None, "sample文件夹为空"
         
-        return max(files, key=os.path.getmtime), None
+        # 按修改时间排序，获取最新文件
+        latest_file = max(files, key=os.path.getmtime)
+        
+        return latest_file, None
+        
     except Exception as e:
         return None, f"获取最新文件失败: {str(e)}"
 
@@ -199,59 +225,72 @@ def read_sample_file(file_path):
     except Exception as e:
         return f"读取文件失败: {str(e)}"
 
-def main():
-    """主测试流程"""
+if __name__ == '__main__':
+    """测试代码：完整流程测试 - 读取sample文件 -> AI分析 -> Markdown格式化"""
     print("🧪 Format Generator 完整流程测试开始...")
     
     # 获取sample文件夹中最新的文件
-    latest_file, error = get_latest_sample_file() 
+    print("📂 查找sample文件夹中最新的文件...")
+    latest_file, error = get_latest_sample_file()
+    
     if error:
         print(f"❌ {error}")
-        return
-    
-    print(f"📄 找到最新文件: {latest_file}")
-    
-    # 读取sample文件夹中最新的文件
-    content = read_sample_file(latest_file)
-    if content.startswith('错误'):
-        print(f"❌ {content}")
-        return
-    
-    print(f"📖 原始文件内容长度: {len(content)} 字符")
-    
-    # AI分析，结果存储在analysis_result变量中
-    print("\n🤖 步骤1: AI分析文本中...")
-    analysis_result = content
-    try:
-        result = analyze_interview(content)
-        if not result.startswith(("网络请求错误", "调用AI API时出错", "AI未返回")):
-            analysis_result = result
-            print(f"✅ AI分析完成，结果长度: {len(analysis_result)} 字符")
-        else:
-            print(f"❌ AI分析失败: {result}")
-    except Exception as e:
-        print(f"⚠️ AI分析出错: {e}，使用原始文本继续测试")
-    
-    # Markdown格式化
-    print("\n📝 步骤2: 将AI分析结果转换为Markdown格式...")
-    base_name = os.path.basename(latest_file)
-    output_filename = f"analyzed_{base_name.replace('.txt', '.md')}" # 存储md的文件夹地址
-    
-    success, markdown_content, path = generate_and_save_markdown(analysis_result, output_filename)
-    
-    if success:
-        print(f"✅ Markdown文件已保存到: {path}")
-        print(f"📄 最终Markdown内容预览:\n{markdown_content[:300]}...")
-        print("\n📊 流程总结:")
-        print(f"   📁 输入文件: {latest_file}")
-        print(f"   📏 原始内容: {len(content)} 字符")
-        print(f"   🤖 AI分析结果: {len(analysis_result)} 字符")
-        print(f"   📝 最终Markdown: {len(markdown_content)} 字符")
-        print(f"   💾 输出文件: {path}")
     else:
-        print(f"❌ Markdown生成失败: {path}")
+        print(f"📄 找到最新文件: {latest_file}")
+        
+        # 读取文件内容
+        content = read_sample_file(latest_file)
+        
+        if content.startswith('错误'):
+            print(f"❌ {content}")
+        else:
+            print(f"📖 原始文件内容长度: {len(content)} 字符")
+            print(f"📝 原始内容预览: {content[:100]}...")
+            
+            # 步骤1: 调用AI分析（模拟ai_analyzer.py的功能）
+            print("\n🤖 步骤1: AI分析文本中...")
+            try:
+                from ai_analyzer import analyze_interview
+                analysis_result = analyze_interview(content)
+                
+                if analysis_result.startswith(("网络请求错误", "调用AI API时出错", "AI未返回")):
+                    print(f"❌ AI分析失败: {analysis_result}")
+                    print("🔄 使用原始文本继续测试...")
+                    analysis_result = content
+                else:
+                    print(f"✅ AI分析完成，结果长度: {len(analysis_result)} 字符")
+                    print(f"📄 AI分析结果预览: {analysis_result[:150]}...")
+                    
+            except ImportError:
+                print("⚠️ 无法导入ai_analyzer模块，使用原始文本继续测试")
+                analysis_result = content
+            except Exception as e:
+                print(f"⚠️ AI分析出错: {e}，使用原始文本继续测试")
+                analysis_result = content
+            
+            # 步骤2: 将AI分析结果转换为Markdown格式
+            print("\n📝 步骤2: 将AI分析结果转换为Markdown格式...")
+            
+            # 生成输出文件名
+            base_name = os.path.basename(latest_file)
+            output_filename = f"analyzed_{base_name.replace('.txt', '.md')}"
+            
+            # 调用format_generator进行markdown格式化
+            success, markdown_content, message = generate_and_save_markdown(analysis_result, output_filename)
+            
+            if success:
+                print(f"✅ {message}")
+                print(f"📄 最终Markdown内容预览:\n{markdown_content[:300]}...")
+                
+                # 显示完整流程总结
+                print("\n📊 流程总结:")
+                print(f"   📁 输入文件: {latest_file}")
+                print(f"   📏 原始内容: {len(content)} 字符")
+                print(f"   🤖 AI分析结果: {len(analysis_result)} 字符")
+                print(f"   📝 最终Markdown: {len(markdown_content)} 字符")
+                print(f"   💾 输出文件: sample_md/{output_filename}")
+                
+            else:
+                print(f"❌ Markdown生成失败: {message}")
     
     print("\n🎉 完整流程测试完成！")
-
-if __name__ == '__main__':
-    main()
